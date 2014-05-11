@@ -1,0 +1,5 @@
+This file is here to test images.
+
+<img src="test.png">
+
+Hopefully you can see this line as well as the one previous to the image.
