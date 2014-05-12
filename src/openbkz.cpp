@@ -413,6 +413,41 @@ void OpenBKZ::on_graphicsView_rubberBandChanged(const QRect &viewportRect, const
 }
 
 /**
+ * Private function of OpenBKZ
+ *
+ * TODO: Add internal dictinary/other lookup for words,
+ *       display them and ask if they would like to Google.
+ *
+ * @brief OpenBKZ::searchMenu - Opens the searched term
+ * @param line - the line which is being searched
+ */
+void OpenBKZ::searchMenu(QString line){
+
+    QString check(line);
+
+    line.remove(this->end_search + 1, 85);
+    int space = (line.count(' ', Qt::CaseInsensitive));
+    line.remove(0, this->start_search - space - 1);
+
+    QStringList term = line.split(' ', QString::SkipEmptyParts);
+    QStringList words = check.split(' ', QString::SkipEmptyParts);
+    line.clear();
+
+    /*
+     * Iterates through sentance and finds full words..
+     * Will break if two words are the same. To fix this
+     * more work is needed.
+     */
+    for(int i = 0; i < words.size(); i++){
+        for(int j = 0; j < term.size(); j++){
+            if(words[i].contains(term[j]) && term[j].size() > 2)
+                line.append(words[i] + ' ');
+        }
+    }
+    QDesktopServices::openUrl(QUrl("https://www.google.com/#q=" + line));
+}
+
+/**
  * Private Function of OpenBKZ
  *
  * @brief OpenBKZ::searchWord - opens a google webpage with yoursearch
@@ -437,17 +472,14 @@ void OpenBKZ::searchWord(){
         this->end_search = temp;
     }
 
-    this->start_search /= (7 * this->fontsize / 15);
-    this->end_search /= (7 * this->fontsize / 15);
+    this->start_search /= (11 * this->fontsize / 20);
+    this->end_search /= (11 * this->fontsize / 20);
     QString line;
 
     for(int i = 0; i < LINESPERPAGE; i++){
         line = stream.readLine(85);
         if(this->start / (this->fontsize + 3) == i){
-            int space = (line.count(' ', Qt::CaseInsensitive));
-            line.remove(this->end_search, 85);
-            line.remove(0, this->start_search - space);
-            QDesktopServices::openUrl(QUrl("https://www.google.com/#q=define+" + line));
+            this->searchMenu(line);
             break;
         }
     }

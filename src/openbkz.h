@@ -63,6 +63,7 @@ private:
 
     void saveHighlightedSection();
     void searchWord();
+    void searchMenu(QString);
 };
 
 #endif // OPENBKZ_H

@@ -17,7 +17,7 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>BasicBookReader Statistics</string>
+   <string>OpenBKZ Statistics</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="3" column="8">
@@ -92,13 +92,13 @@
     <widget class="QLabel" name="titleDateLabel">
      <property name="minimumSize">
       <size>
-       <width>500</width>
+       <width>550</width>
        <height>0</height>
       </size>
      </property>
      <property name="maximumSize">
       <size>
-       <width>500</width>
+       <width>550</width>
        <height>16</height>
       </size>
      </property>
