@@ -168,7 +168,7 @@ void library::closeBook(current_book* book){
     if(book == NULL || book->file_location->size() == 0)
         return;
     for(int i = 0; i < this->books.size(); i++){
-        if(this->books[i].title->compare(book->title, Qt::CaseInsensitive)){
+        if(this->books[i].title->compare(*book->title, Qt::CaseInsensitive) == 0){
             this->books[i].pagenum = book->pagenum;
             break;
         }

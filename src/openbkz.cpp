@@ -64,7 +64,7 @@ OpenBKZ::~OpenBKZ(){
         delete this->stats;
     }
 
-    this->lib->save_bookinfo_to_database(*this->lib_loc);
+    on_saveBookButton_clicked();
 
     delete book;
     delete ui;
@@ -107,12 +107,13 @@ void OpenBKZ::on_prevButton_clicked(){
  * @brief OpenBKZ::on_saveBookButton_clicked - saves the book to the library
  */
 void OpenBKZ::on_saveBookButton_clicked(){
+
     if(book == NULL || book->page.size() < 1){ return; }
-    for(int i = 0; i < lib->books.size(); i++){
-        if(book->title->compare(lib->books[i].title, Qt::CaseInsensitive) == 0){
+
+    for(int i = 0; i < lib->books.size(); i++)
+        if(book->title->compare(lib->books[i].title, Qt::CaseInsensitive) == 0)
             lib->books[i].pagenum = book->pagenum;
-        }
-    }
+
     lib->save_bookinfo_to_database(*lib_loc);
 }
 
@@ -166,7 +167,6 @@ void OpenBKZ::on_toolButton_clicked(){
 
     QStringList list = fileName.split("/", QString::SkipEmptyParts);
     this->book->title = new QString(list[list.count() - 1]);
-
     this->book->file_location = new QString(fileName.remove((*this->book->title), Qt::CaseInsensitive));
 
     loadNewBook();
@@ -284,8 +284,8 @@ void OpenBKZ::loadpage(){
 void OpenBKZ::loadNewBook(){
 
     for(int i = 0; i < this->lib->books.count(); i++){
-        if(this->book->title->compare(this->lib->books[i].title, Qt::CaseInsensitive) == 0){
-            this->lib->loadbook(i, this->book);
+        if(book->title->compare(lib->books[i].title, Qt::CaseInsensitive) == 0){
+            lib->loadbook(i, book);
             this->stats= new statistics(*this->book->title, this->book->page.count(), LINESPERPAGE);
             loadpage();
             return;
@@ -425,26 +425,25 @@ void OpenBKZ::searchMenu(QString line){
 
     QString check(line);
 
-    line.remove(this->end_search + 1, 85);
-    int space = (line.count(' ', Qt::CaseInsensitive));
-    line.remove(0, this->start_search - space - 1);
+    int space = (line.count(' ', Qt::CaseInsensitive)) / 2;
+    line.remove(this->end_search + space, 85);
+    line.remove(0, this->start_search + 2);
 
     QStringList term = line.split(' ', QString::SkipEmptyParts);
     QStringList words = check.split(' ', QString::SkipEmptyParts);
     line.clear();
 
-    /*
-     * Iterates through sentance and finds full words..
-     * Will break if two words are the same. To fix this
-     * more work is needed.
-     */
-    for(int i = 0; i < words.size(); i++){
-        for(int j = 0; j < term.size(); j++){
-            if(words[i].contains(term[j]) && term[j].size() > 2)
+    for(int j = 0; j < term.size(); j++){
+        for(int i = 0; i < words.size(); i++){
+            if(words[i].contains(term[j]) && term[j].size() > (words[i].size() / 2) ){
                 line.append(words[i] + ' ');
+                break;
+            }
         }
     }
-    QDesktopServices::openUrl(QUrl("https://www.google.com/#q=" + line));
+
+    if(line.size() > 0)
+        QDesktopServices::openUrl(QUrl("https://www.google.com/#q=" + line));
 }
 
 /**
