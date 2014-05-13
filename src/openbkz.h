@@ -44,12 +44,17 @@ private:
     Ui::OpenBKZ *ui;
     statsviewer * sv;
 
+/* Variables related to page location */
+    int finger_in_page;
+
+/* Variables related to note/search */
     int fontsize;
     int start;
     int end;
     int start_search;
     int end_search;
 
+/* Variables related to various constructs */
     current_book * book;
     library * lib;
     QString * lib_loc;
@@ -57,10 +62,12 @@ private:
     std::vector< QString > highlight;
     QString search;
 
+/* Functions related to book parsing */
     void loadpage();
     void loadNewBook();
     int parseImage(int, QString, QGraphicsScene *);
 
+/* Functions related to notes and search */
     void saveHighlightedSection();
     void searchWord();
     void searchMenu(QString);

@@ -5,6 +5,7 @@
 #include <iostream>
 #include <QFileDialog>
 #include <QInputDialog>
+#include <QDialogButtonBox>
 #include <QCursor>
 #include <QPoint>
 #include <QDesktopServices>
@@ -294,6 +295,7 @@ void OpenBKZ::loadNewBook(){
     }
 
     this->book->open = true;
+    this->finger_in_page = this->book->pagenum;
 
     this->lib->init_book(this->book);
     this->stats= new statistics(*this->book->title, this->book->page.count(), LINESPERPAGE);
@@ -424,15 +426,14 @@ void OpenBKZ::on_graphicsView_rubberBandChanged(const QRect &viewportRect, const
  */
 void OpenBKZ::searchMenu(QString line){
 
-    QString check(line);
+    QString copy(line);
 
     int space = line.size() / (2 * fontsize);
-    std::cout << space << std::endl;
     line.remove(this->end_search + space, 85);
     line.remove(0, this->start_search - space/2);
 
     QStringList term = line.split(' ', QString::SkipEmptyParts);
-    QStringList words = check.split(' ', QString::SkipEmptyParts);
+    QStringList words = copy.split(' ', QString::SkipEmptyParts);
     line.clear();
 
     for(int j = 0; j < term.size(); j++){
@@ -484,6 +485,7 @@ void OpenBKZ::searchWord(){
             break;
         }
     }
+
     this->stats->reviewed(line, this->book->pagenum);
 }
 
@@ -568,4 +570,14 @@ void OpenBKZ::keyPressEvent( QKeyEvent *k ){
        || k->key() == Qt::Key_9){
         this->releaseKeyboard();
     }
+}
+
+void OpenBKZ::on_fingerInPage_pressed(){
+
+
+}
+
+void OpenBKZ::on_fingerOutPage_pressed(){
+
+
 }

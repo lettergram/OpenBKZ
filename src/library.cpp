@@ -146,7 +146,8 @@ void library::index_book(current_book* book){
             QStringList words = check.split(" ", QString::SkipEmptyParts);
             for(int j = 0; j < words.count(); j++){
                 if(tableofcontents > 0){ break; }
-                if(words[j].compare(QString("Chapter"), Qt::CaseInsensitive) == 0){
+                if(words[j].compare(QString("Chapter"), Qt::CaseInsensitive) == 0
+                   || words[j].compare(QString("Session"), Qt::CaseInsensitive) == 0){
                     book->chapter.push_back(page);
                     tableofcontents = 1;
                 }
