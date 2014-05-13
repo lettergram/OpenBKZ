@@ -418,15 +418,15 @@ void OpenBKZ::on_graphicsView_rubberBandChanged(const QRect &viewportRect, const
  * TODO: Add internal dictinary/other lookup for words,
  *       display them and ask if they would like to Google.
  *
- * @brief OpenBKZ::searchMenu - Opens the searched term
+ * @brief OpenBKZ::searchMenu - Opens the searched term, adjusts
+ *          for any form of error.
  * @param line - the line which is being searched
  */
 void OpenBKZ::searchMenu(QString line){
 
     QString check(line);
 
-    /* 3/5 * 1/3 */
-    int space = line.size() / (2 * fontsize); //(fontsize / line.count(' ', Qt::CaseInsensitive));
+    int space = line.size() / (2 * fontsize);
     std::cout << space << std::endl;
     line.remove(this->end_search + space, 85);
     line.remove(0, this->start_search - space/2);
