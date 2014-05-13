@@ -295,7 +295,6 @@ void OpenBKZ::loadNewBook(){
     }
 
     this->book->open = true;
-    this->finger_in_page = this->book->pagenum;
 
     this->lib->init_book(this->book);
     this->stats= new statistics(*this->book->title, this->book->page.count(), LINESPERPAGE);
@@ -572,12 +571,10 @@ void OpenBKZ::keyPressEvent( QKeyEvent *k ){
     }
 }
 
-void OpenBKZ::on_fingerInPage_pressed(){
+void OpenBKZ::on_thumbPage_pressed(){
 
-
-}
-
-void OpenBKZ::on_fingerOutPage_pressed(){
-
-
+    for(int i = 0; i < lib->books.size(); i++)
+        if(0 == lib->books[i].title->compare(*(book->title), Qt::CaseInsensitive))
+            book->pagenum = lib->books[i].pagenum;
+    loadpage();
 }

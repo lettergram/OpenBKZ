@@ -38,14 +38,13 @@ private slots:
     void on_graphicsView_rubberBandChanged(const QRect &viewportRect, const QPointF &fromScenePoint, const QPointF &toScenePoint);
 
     void on_fontSizeSlider_valueChanged(int value);
+    void on_thumbPage_pressed();
+
 
 private:
 
     Ui::OpenBKZ *ui;
     statsviewer * sv;
-
-/* Variables related to page location */
-    int finger_in_page;
 
 /* Variables related to note/search */
     int fontsize;
