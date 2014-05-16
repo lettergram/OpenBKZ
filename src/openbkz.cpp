@@ -537,6 +537,19 @@ void OpenBKZ::on_fontSizeSlider_valueChanged(int value){
 }
 
 /**
+ * Private Slot of the OpenBKZ class
+ *
+ * @brief OpenBKZ::on_thumbPage_pressed - Returns user
+ *          to the bookmarked page.
+ */
+void OpenBKZ::on_thumbPage_pressed(){
+    for(int i = 0; i < lib->books.size(); i++)
+        if(0 == lib->books[i].title->compare(*(book->title), Qt::CaseInsensitive))
+            book->pagenum = lib->books[i].pagenum;
+    loadpage();
+}
+
+/**
  * Public function of the OpenBKZ class
  *
  * @brief OpenBKZ::keyPressEvent - is called when grabKeyboard()
@@ -557,6 +570,8 @@ void OpenBKZ::keyPressEvent( QKeyEvent *k ){
         on_saveBookButton_clicked();
     else if(k->key() == Qt::Key_S)
         on_viewStats_clicked();
+    else if(k->key() == Qt::Key_R)
+        on_thumbPage_pressed();
     if(k->key() == Qt::Key_0
        || k->key() == Qt::Key_1
        || k->key() == Qt::Key_2
@@ -569,12 +584,4 @@ void OpenBKZ::keyPressEvent( QKeyEvent *k ){
        || k->key() == Qt::Key_9){
         this->releaseKeyboard();
     }
-}
-
-void OpenBKZ::on_thumbPage_pressed(){
-
-    for(int i = 0; i < lib->books.size(); i++)
-        if(0 == lib->books[i].title->compare(*(book->title), Qt::CaseInsensitive))
-            book->pagenum = lib->books[i].pagenum;
-    loadpage();
 }
