@@ -11,6 +11,10 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 TARGET = openBKZ
 TEMPLATE = app
 #CONFIG-=app_bundle
+DESTDIR = release
+OBJECTS_DIR = tmp
+MOC_DIR = tmp
+UI_DIR = tmp
 
 SOURCES += src/main.cpp\
     src/openbkz.cpp \
