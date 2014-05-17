@@ -372,10 +372,11 @@ safest to attach them to the start of each source file to most effectively
 convey the exclusion of warranty; and each file should have at least the
 "copyright" line and a pointer to where the full notice is found.
 
-    THis license applyes to OpenBKZ libraries: library.h/cpp, statistics.h/cpp, 
-    OpenBKZ.h/cpp/ui. This does not include libraries not explicitly stated here.
+    THis license applies to OpenBKZ libraries: library.h/cpp, statistics.h/cpp, 
+    statsviewer.h/cpp/ui, OpenBKZ.h/cpp/ui.
     All other and subsequent libraries related to the project are reserved by 
-    Copyright by Austin G. Walters.
+    Copyright by/for Austin G. Walters, and unless written permission is granted
+    by Austin G. Walters, unlisted libraries are reserved by Copyright.
 
     Copyright (C) 2014 Austin G. Walters
 
