@@ -30,7 +30,7 @@ Further, I intend to launch a similar closed source project called AlphaBKZ whic
 
 <h2>Directions:</h2>
 
-  <h3>Build:</h3>
+  <h3>Build - Windows:</h3>
   <ul>
     <li>Download OpenBKZ</li>
     <li>Install Qt 5+ </li>
@@ -38,6 +38,12 @@ Further, I intend to launch a similar closed source project called AlphaBKZ whic
     <li>Click File->Open file or project</li>
     <li>Select the ".pro" file</li>
     <li>Click the big Green Arrow and run your program (this should build it)</li>
+  </ul>
+  <h3>Build - Linux: </h3>
+  <ul>
+    <li>Download OpenBKZ (either with git clone or by download the zip)</li>
+    <li>Run "make"</li>
+    <li>Run openbkz with "./openbkz" in the release folder</li>
   </ul>
   <h3>Run:</h3>
     <ul>
