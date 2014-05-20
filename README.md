@@ -30,7 +30,7 @@ Further, I intend to launch a similar closed source project called AlphaBKZ whic
 
 <h2>Directions:</h2>
 
-  <h3>Build - Windows:</h3>
+  <h3>Build - OSX/Windows Using Qt Creator:</h3>
   <ul>
     <li>Download OpenBKZ</li>
     <li>Install Qt 5+ </li>
