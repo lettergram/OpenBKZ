@@ -164,7 +164,7 @@ void OpenBKZ::on_toolButton_clicked(){
     if(book->open)
       this->lib->closeBook(this->book);
 
-    QString fileName = QFileDialog::getOpenFileName(this, "Select a file to open...", (*this->book->file_location));
+    QString fileName = QFileDialog::getOpenFileName(this, "Select a file to open...", (*this->book->file_location + "/books"));
     if(fileName == NULL){ return; }
 
     QStringList list = fileName.split("/", QString::SkipEmptyParts);

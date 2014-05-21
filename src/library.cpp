@@ -80,7 +80,6 @@ void library::loadbook(int index, current_book * book){
     }
 
     book->open = true;
-
     file.close();
 }
 
