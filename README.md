@@ -71,6 +71,8 @@ Further, I intend to launch a similar closed source project called AlphaBKZ whic
       launch the application it will load library.txt which will contain all the titles you currently have, plus 
       all indexes. This means that when you launch a book it should load instantly (since we only load one page at 
       a time - 50 lines).</li>
+    <li>**Awesome Search Feature**, just swipe acorss (or highlight with the mouse) the word/phrase you would like to
+        search. With instant lookup, knowledge is at your fingertips.</li>
     <li>**Ease of use**, I intended this application to be as easy to use and as portible as possible. I didn't want 
       to have to worry about any complexities with file formats or notes. This design decision means you cannot 
       use  many features you may be use to with your current ebook readers. However, it also means I developed an 
