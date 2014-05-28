@@ -79,8 +79,6 @@ Further, I intend to launch a similar closed source project called AlphaBKZ whic
       easily expandable and usable application, which other programmers can use as a templete to build a better 
       ebook reader. Further, something this simple is easy to maintain, repair and hard to break. I would rather 
       do one thing correcly than a lot poorly.</li>
-    <li>**Low space requirement**, I hate programs that are slow and too big. Small, sleek, and quick is the only
-      way to go in my opinion.</li>
     <li>**Data, data, data**, because I leave the hood open and all of the data is open source, you have access to
       all available data and can build libraries for better analytics. This was and is my intended use.</li>
     </ul> 
