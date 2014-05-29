@@ -82,3 +82,14 @@ Further, I intend to launch a similar closed source project called AlphaBKZ whic
     <li>**Data, data, data**, because I leave the hood open and all of the data is open source, you have access to
       all available data and can build libraries for better analytics. This was and is my intended use.</li>
     </ul> 
+  <h3>Future Features:</h3>
+    <ul>
+      <li>**In app dictionary**, I am currently working on an in app dictionary which will be used to better search terms,
+            but will also cover use cases, when they were first used, and more.</li>
+      <li>**Online backup**, similar to Anki cards it would be nice to have an online backup system as well as a feature to
+            download new books (not upload books in order to avoid copyright issues).</li>
+      <li>**User specific accounts**, allowing online backups require user specific accounts. This means that people can 
+            login on the same computer, but have different libraries.</li>
+      <li>**Publishing**, enabling a person to self publish and sell their books through this application would be a great 
+            improvement.</li>
+    <ul>
