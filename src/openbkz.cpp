@@ -34,16 +34,17 @@ OpenBKZ::OpenBKZ(QWidget *parent) :
 
         this->lib_loc = new QString(dir.absolutePath() + "/");
 
+        // Initialize Library/Book
         this->lib = new library(*this->lib_loc);
         this->book = new current_book();
         this->stats = NULL;
         this->book->open = false;
+        this->book->file_location = new QString(*this->lib_loc);
 
+        // Initialize UI Items
         this->fontsize = 13;
         this->start = 0;
         this->end = 0;
-
-        this->book->file_location = new QString(*this->lib_loc);
         this->search = QString("Pages");
         this->grabKeyboard();
 }
