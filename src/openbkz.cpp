@@ -21,7 +21,6 @@ OpenBKZ::OpenBKZ(QWidget *parent) :
     ui(new Ui::OpenBKZ){
 
         this->grabKeyboard();
-
         ui->setupUi(this);
 
         QDir dir(QApplication::applicationDirPath());
@@ -32,9 +31,8 @@ OpenBKZ::OpenBKZ(QWidget *parent) :
             if(i++ == 5){ break; }
         }
 
-        this->lib_loc = new QString(dir.absolutePath() + "/");
-
         // Initialize Library/Book
+        this->lib_loc = new QString(dir.absolutePath() + "/");
         this->lib = new library(*this->lib_loc);
         this->book = new current_book();
         this->stats = NULL;
