@@ -30,7 +30,7 @@ Further, I intend to launch a similar closed source project called AlphaBKZ whic
 
 <h2>Directions:</h2>
 
-  <h3>Build - OSX/Windows Using Qt Creator:</h3>
+  <h3>Build - Using Qt Creator:</h3>
   <ul>
     <li>Download OpenBKZ</li>
     <li>Install Qt 5+ </li>
@@ -71,14 +71,25 @@ Further, I intend to launch a similar closed source project called AlphaBKZ whic
       launch the application it will load library.txt which will contain all the titles you currently have, plus 
       all indexes. This means that when you launch a book it should load instantly (since we only load one page at 
       a time - 50 lines).</li>
+    <li>**Awesome Search Feature**, just swipe acorss (or highlight with the mouse) the word/phrase you would like to
+        search. With instant lookup, knowledge is at your fingertips.</li>
     <li>**Ease of use**, I intended this application to be as easy to use and as portible as possible. I didn't want 
       to have to worry about any complexities with file formats or notes. This design decision means you cannot 
       use  many features you may be use to with your current ebook readers. However, it also means I developed an 
       easily expandable and usable application, which other programmers can use as a templete to build a better 
       ebook reader. Further, something this simple is easy to maintain, repair and hard to break. I would rather 
       do one thing correcly than a lot poorly.</li>
-    <li>**Low space requirement**, I hate programs that are slow and too big. Small, sleek, and quick is the only
-      way to go in my opinion.</li>
     <li>**Data, data, data**, because I leave the hood open and all of the data is open source, you have access to
       all available data and can build libraries for better analytics. This was and is my intended use.</li>
     </ul> 
+  <h3>Future Features:</h3>
+    <ul>
+      <li>**In app dictionary**, I am currently working on an in app dictionary which will be used to better search terms,
+            but will also cover use cases, when they were first used, and more.</li>
+      <li>**Online backup**, similar to Anki cards it would be nice to have an online backup system as well as a feature to
+            download new books (not upload books in order to avoid copyright issues).</li>
+      <li>**User specific accounts**, allowing online backups require user specific accounts. This means that people can 
+            login on the same computer, but have different libraries.</li>
+      <li>**Publishing**, enabling a person to self publish and sell their books through this application would be a great 
+            improvement.</li>
+    <ul>
