@@ -163,9 +163,11 @@ void OpenBKZ::on_toolButton_clicked(){
 
     if(book->open)
       this->lib->closeBook(this->book);
-
+   // QFileDialog * menu = new QFileDialog();
     QString fileName = QFileDialog::getOpenFileName(this, "Select a file to open...", (*this->book->file_location + "/books"));
-    if(fileName == NULL){ return; }
+
+    if(fileName == NULL)
+        return;
 
     QStringList list = fileName.split("/", QString::SkipEmptyParts);
     this->book->title = new QString(list[list.count() - 1]);
@@ -285,6 +287,10 @@ void OpenBKZ::loadpage(){
  */
 void OpenBKZ::loadNewBook(){
 
+    indexingPage();
+    QMessageBox::information(0, "Congradulations!",
+      "Adding a new addition to the library.\nDon't worry I'll index it for ya!\nThis process can take up to 20 seconds.");
+
     for(int i = 0; i < this->lib->books.count(); i++){
         if(book->title->compare(lib->books[i].title, Qt::CaseInsensitive) == 0){
             lib->loadbook(i, book);
@@ -297,6 +303,7 @@ void OpenBKZ::loadNewBook(){
     this->book->open = true;
 
     this->lib->init_book(this->book);
+    on_saveBookButton_clicked();
     this->stats= new statistics(*this->book->title, this->book->page.count(), LINESPERPAGE);
     loadpage();
 }
@@ -584,4 +591,19 @@ void OpenBKZ::keyPressEvent( QKeyEvent *k ){
        || k->key() == Qt::Key_9){
         this->releaseKeyboard();
     }
+}
+
+/**
+ * @brief OpenBKZ::loadingPage - provides a loading page for indexing
+ */
+void OpenBKZ::indexingPage(){
+    QGraphicsScene * scene = new QGraphicsScene();
+    QFont f;
+    f.setPointSize(124);
+    QString message = "Congradulations on the addition to your library!\nPlease be patient, while I index your book.";
+    message += "\n\nHere's a joke: \nThree college students walk into a bar, who's the last one standing?";
+    message += "\n\n...\n\nNo one, they all ran into a bar.";
+    message += "\n\n\n...\n\nAlright, not that funny, \nbut I just read and indexed your whole book here it is!";
+    scene->addText(message);
+    ui->graphicsView->setScene(scene);
 }

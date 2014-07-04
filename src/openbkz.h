@@ -64,6 +64,7 @@ private:
 /* Functions related to book parsing */
     void loadpage();
     void loadNewBook();
+    void indexingPage();
     int parseImage(int, QString, QGraphicsScene *);
 
 /* Functions related to notes and search */
