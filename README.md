@@ -84,6 +84,7 @@ Further, I intend to launch a similar closed source project called AlphaBKZ whic
     </ul> 
   <h3>Future Features:</h3>
     <ul>
+      <li>**Pleasant UI**, as it sounds, I would like this Ebook reader to have an intuitive and amazing UI.</li>
       <li>**In app dictionary**, I am currently working on an in app dictionary which will be used to better search terms,
             but will also cover use cases, when they were first used, and more.</li>
       <li>**Online backup**, similar to Anki cards it would be nice to have an online backup system as well as a feature to
