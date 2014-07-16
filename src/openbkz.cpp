@@ -111,6 +111,8 @@ void OpenBKZ::on_saveBookButton_clicked(){
 
     if(book == NULL || book->page.size() < 1){ return; }
 
+    ui->saveBookButton->animateClick();
+
     for(int i = 0; i < lib->books.size(); i++)
         if(book->title->compare(lib->books[i].title, Qt::CaseInsensitive) == 0)
             lib->books[i].pagenum = book->pagenum;
@@ -253,8 +255,8 @@ void OpenBKZ::loadpage(){
     }
 
     QGraphicsScene * scene = new QGraphicsScene();
-    QFont f;
-    f.setPointSize(this->fontsize);
+    QFont f(ui->styleBox->currentText(), fontsize);
+    //f.setPointSize(this->fontsize);
     int curline_pos = 0;
     int imgline = 0;
 
@@ -605,4 +607,13 @@ void OpenBKZ::indexingPage(){
     message += "\n\n\n...\n\nAlright, not that funny, \nbut I just read and indexed your whole book here it is!";
     scene->addText(message);
     ui->graphicsView->setScene(scene);
+}
+
+/**
+ * @brief OpenBKZ::on_styleBox_activated - When the font is changed,
+ *          this function is called, reload the page with the index.
+ * @param index - not used, but is the index of the font selected
+ */
+void OpenBKZ::on_styleBox_activated(int index){
+    loadpage();
 }

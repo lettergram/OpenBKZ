@@ -41,6 +41,8 @@ private slots:
     void on_thumbPage_pressed();
 
 
+    void on_styleBox_activated(int index);
+
 private:
 
     Ui::OpenBKZ *ui;

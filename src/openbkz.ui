@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>782</width>
+    <width>787</width>
     <height>601</height>
    </rect>
   </property>
@@ -24,7 +24,120 @@
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QGridLayout" name="gridLayout">
-    <item row="24" column="4">
+    <item row="6" column="7">
+     <widget class="QLabel" name="label_2">
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>20</height>
+       </size>
+      </property>
+      <property name="text">
+       <string>Font Size &amp; Style</string>
+      </property>
+     </widget>
+    </item>
+    <item row="7" column="7">
+     <widget class="QSlider" name="fontSizeSlider">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>120</width>
+        <height>16777215</height>
+       </size>
+      </property>
+      <property name="minimum">
+       <number>4</number>
+      </property>
+      <property name="maximum">
+       <number>64</number>
+      </property>
+      <property name="sliderPosition">
+       <number>13</number>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
+    </item>
+    <item row="26" column="6">
+     <widget class="QPushButton" name="nextButton">
+      <property name="maximumSize">
+       <size>
+        <width>80</width>
+        <height>16777215</height>
+       </size>
+      </property>
+      <property name="text">
+       <string>next</string>
+      </property>
+     </widget>
+    </item>
+    <item row="26" column="3">
+     <widget class="QComboBox" name="search_type">
+      <property name="maximumSize">
+       <size>
+        <width>100</width>
+        <height>16777215</height>
+       </size>
+      </property>
+      <item>
+       <property name="text">
+        <string>Pages</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Chapters</string>
+       </property>
+      </item>
+     </widget>
+    </item>
+    <item row="26" column="5">
+     <widget class="QPushButton" name="prevButton">
+      <property name="maximumSize">
+       <size>
+        <width>80</width>
+        <height>16777215</height>
+       </size>
+      </property>
+      <property name="text">
+       <string>Prev</string>
+      </property>
+     </widget>
+    </item>
+    <item row="26" column="2">
+     <widget class="QPushButton" name="enable_stats_button">
+      <property name="minimumSize">
+       <size>
+        <width>130</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>140</width>
+        <height>16777215</height>
+       </size>
+      </property>
+      <property name="text">
+       <string>Disable Statistics</string>
+      </property>
+     </widget>
+    </item>
+    <item row="26" column="1">
+     <widget class="QLabel" name="label">
+      <property name="text">
+       <string>OpenBKZ Alpha v0.4.1</string>
+      </property>
+     </widget>
+    </item>
+    <item row="26" column="4">
      <widget class="QLineEdit" name="lineEdit_page">
       <property name="enabled">
        <bool>true</bool>
@@ -52,79 +165,7 @@
       </property>
      </widget>
     </item>
-    <item row="24" column="2">
-     <widget class="QPushButton" name="enable_stats_button">
-      <property name="minimumSize">
-       <size>
-        <width>130</width>
-        <height>0</height>
-       </size>
-      </property>
-      <property name="maximumSize">
-       <size>
-        <width>140</width>
-        <height>16777215</height>
-       </size>
-      </property>
-      <property name="text">
-       <string>Disable Statistics</string>
-      </property>
-     </widget>
-    </item>
-    <item row="24" column="3">
-     <widget class="QComboBox" name="search_type">
-      <property name="maximumSize">
-       <size>
-        <width>100</width>
-        <height>16777215</height>
-       </size>
-      </property>
-      <item>
-       <property name="text">
-        <string>Pages</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Chapters</string>
-       </property>
-      </item>
-     </widget>
-    </item>
-    <item row="24" column="5">
-     <widget class="QPushButton" name="prevButton">
-      <property name="maximumSize">
-       <size>
-        <width>80</width>
-        <height>16777215</height>
-       </size>
-      </property>
-      <property name="text">
-       <string>Prev</string>
-      </property>
-     </widget>
-    </item>
-    <item row="24" column="1">
-     <widget class="QLabel" name="label">
-      <property name="text">
-       <string>OpenBKZ Alpha v0.4</string>
-      </property>
-     </widget>
-    </item>
-    <item row="24" column="6">
-     <widget class="QPushButton" name="nextButton">
-      <property name="maximumSize">
-       <size>
-        <width>80</width>
-        <height>16777215</height>
-       </size>
-      </property>
-      <property name="text">
-       <string>next</string>
-      </property>
-     </widget>
-    </item>
-    <item row="24" column="7">
+    <item row="26" column="7">
      <widget class="QComboBox" name="user_rating">
       <property name="maximumSize">
        <size>
@@ -164,7 +205,7 @@
       </item>
      </widget>
     </item>
-    <item row="0" column="1" rowspan="11" colspan="6">
+    <item row="0" column="1" rowspan="13" colspan="6">
      <widget class="QGraphicsView" name="graphicsView">
       <property name="minimumSize">
        <size>
@@ -183,34 +224,6 @@
       </property>
       <property name="dragMode">
        <enum>QGraphicsView::RubberBandDrag</enum>
-      </property>
-     </widget>
-    </item>
-    <item row="5" column="7">
-     <widget class="QSlider" name="fontSizeSlider">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="maximumSize">
-       <size>
-        <width>120</width>
-        <height>16777215</height>
-       </size>
-      </property>
-      <property name="minimum">
-       <number>4</number>
-      </property>
-      <property name="maximum">
-       <number>64</number>
-      </property>
-      <property name="sliderPosition">
-       <number>13</number>
-      </property>
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
       </property>
      </widget>
     </item>
@@ -277,6 +290,71 @@
       <property name="text">
        <string>Back to Page</string>
       </property>
+     </widget>
+    </item>
+    <item row="8" column="7">
+     <widget class="QComboBox" name="styleBox">
+      <property name="maximumSize">
+       <size>
+        <width>115</width>
+        <height>16777215</height>
+       </size>
+      </property>
+      <item>
+       <property name="text">
+        <string>Default</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Helvetica</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Arial</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Times New Roman</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Times</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Courier</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Arial Black</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Arial Narrow</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Georgia</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Rockwell</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Comic Sans MS</string>
+       </property>
+      </item>
      </widget>
     </item>
    </layout>
