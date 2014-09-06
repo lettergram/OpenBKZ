@@ -49,7 +49,6 @@ OpenBKZ::OpenBKZ(QWidget *parent) :
         this->end = 0;
         this->search = QString("Pages");
         this->grabKeyboard();
-        this->wordPos = 0;
         this->locateWord = false;
 }
 
@@ -266,18 +265,22 @@ void OpenBKZ::loadpage(){
     //f.setPointSize(this->fontsize);
     int curline_pos = 0;
     int imgline = 0;
+    int wordPosIndex = 0;
 
     for(int i = 0; i < LINESPERPAGE; i++){
 
         QString toadd = "";
 
-        if(locateWord && wordPos > stream.pos() && wordPos < stream.pos() + 85){
+        // Currently accurate to line
+        if(locateWord && (wordPos[wordPosIndex] == i)){
             f.setUnderline(true);
             f.setBold(true);
+            wordPosIndex++;
         }else{
             f.setUnderline(false);
             f.setBold(false);
         }
+
         toadd.append(stream.readLine(85)); // TODO: Improve line and page parse
 
         imgline = this->parseImage(curline_pos, toadd, scene);
@@ -295,6 +298,7 @@ void OpenBKZ::loadpage(){
     ui->graphicsView->setScene(scene);
 
     this->stats->startPage(this->book->pagenum);
+    locateWord = false; // TODO REMOVE AT SOME POINT
     file.close();
 }
 
@@ -665,16 +669,20 @@ void OpenBKZ::on_lineEdit_page_returnPressed(){
         return;
     }
 
+    wordPos.resize(book->termLoc.size());
+
     // TODO: Should make this a combo box or easy selection (currently not)
-    for(int i = 0; i < book->termLoc.size(); i++){
+    for(int i = book->termLoc.size() - 1; i >= 0; i--){
+
         QStringList list = book->termLoc[i].split(",", QString::SkipEmptyParts);
-        book->pagenum = list[0].toInt();
-        wordPos = list[1].toInt();
+        book->pagenum = list[0].toInt();    // page number
+        // list[1].toInt();                 // location in file
+        wordPos[i] = list[2].toInt();       // line number
         locateWord = true;
         loadpage();
-        break;
     }
 
+    std::reverse(wordPos.end(), wordPos.begin());
 }
 
 void OpenBKZ::on_lineEdit_page_selectionChanged(){

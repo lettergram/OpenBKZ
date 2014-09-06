@@ -180,13 +180,14 @@ QList<QString> library::searchTerm(QString term, current_book * book){
             QStringList words = check.split(" ", QString::SkipEmptyParts);
             for(int j = 0; j < words.count(); j++){
                 if(words[j].compare(term, Qt::CaseInsensitive) == 0){
-                    termLoc << QString::number(page) + "," + QString::number(stream.pos());
+                    termLoc << QString::number(page) + "," + QString::number(stream.pos()) + "," + QString::number(i);
+                    std::cout << QString::number(page).toStdString() + "," + QString::number(stream.pos()).toStdString();
+                    std::cout << "," << QString::number(i).toStdString() << std::endl;
                     found = true;
                 }
-                if(found){ break; }
             }
-            if(found){ break; }
         }
+        std::cout << "page: " << page << std::endl;
         if(found){ break; }
     }
     file.close();

@@ -3,6 +3,8 @@
 
 #include "statsviewer/statsviewer.h"
 
+#include <algorithm>
+
 #include <QMainWindow>
 #include <QKeyEvent>
 #include <QList>
@@ -78,7 +80,7 @@ private:
     void searchMenu(QString);
 
 /* Functions related to searching for words internal to book */
-    int wordPos;
+    std::vector<int> wordPos;
     bool locateWord;
 };
 
