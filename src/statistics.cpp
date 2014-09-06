@@ -267,5 +267,5 @@ void statistics::usrsrating(int val){
     QTextStream stream(&file);
 
     time_t current_time = time(NULL);
-    stream <<QString(ctime(&current_time)).remove(24, 1) << ": " << val << endl;
+    stream << QString(ctime(&current_time)).remove(24, 1) << ": " << val << endl;
 }

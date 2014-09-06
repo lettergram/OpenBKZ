@@ -132,18 +132,19 @@ void library::index_book(current_book* book){
 
     book->page.push_back(0);
     book->chapter.push_back(0);
-    int tableofcontents = 6;
+
+    int previousChapter = 0;
+
     for(int page = 0; !stream.atEnd(); page++){
-        tableofcontents--;
         for(int i = 0; i < LINESPERPAGE; i++){
             QString check = stream.readLine(85);
             QStringList words = check.split(" ", QString::SkipEmptyParts);
             for(int j = 0; j < words.count(); j++){
-                if(tableofcontents > 0){ break; }
                 if(words[j].compare(QString("Chapter"), Qt::CaseInsensitive) == 0
                    || words[j].compare(QString("Session"), Qt::CaseInsensitive) == 0){
-                    book->chapter.push_back(page);
-                    tableofcontents = 1;
+                    if(previousChapter + 1 < page)
+                        book->chapter.push_back(page);
+                    previousChapter = page;
                 }
             }
         }
@@ -151,6 +152,47 @@ void library::index_book(current_book* book){
     }
     file.close();
 }
+
+/**
+ * Public Function of the Library Class
+ *
+ * TODO: STILL EXPERIMENTING, JUST STOPS AT FIRST FOUND TERM
+ *
+ * @brief search - searches for terms throughout the current book
+ * @param term - term to search for
+ * @param book - book to search
+ * @return list of <String = "page number,stream position"> the term is located on
+ */
+QList<QString> library::searchTerm(QString term, current_book * book){
+
+    QFile file(*book->file_location + *book->title);
+    if(!file.open(QIODevice::ReadOnly))
+        QMessageBox::information(0, "Error", file.errorString());
+    QTextStream stream(&file);
+
+    QList<QString> termLoc;
+
+    bool found = false; // TODO: REMOVE
+
+    for(int page = book->pagenum; !stream.atEnd(); page++){
+        for(int i = 0; i < LINESPERPAGE; i++){
+            QString check = stream.readLine(85);
+            QStringList words = check.split(" ", QString::SkipEmptyParts);
+            for(int j = 0; j < words.count(); j++){
+                if(words[j].compare(term, Qt::CaseInsensitive) == 0){
+                    termLoc << QString::number(page) + "," + QString::number(stream.pos());
+                    found = true;
+                }
+                if(found){ break; }
+            }
+            if(found){ break; }
+        }
+        if(found){ break; }
+    }
+    file.close();
+    return termLoc;
+}
+
 
 /**
  * Public Function of the library class

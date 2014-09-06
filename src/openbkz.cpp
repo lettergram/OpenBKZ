@@ -1,7 +1,11 @@
+
+/** Local Headers **/
 #include "openbkz.h"
 #include "ui_openbkz.h"
 #include "library.h"
 #include "statistics.h"
+
+/** C++ and Qt **/
 #include <iostream>
 #include <QFileDialog>
 #include <QInputDialog>
@@ -55,14 +59,14 @@ OpenBKZ::OpenBKZ(QWidget *parent) :
  */
 OpenBKZ::~OpenBKZ(){
 
-    if(this->book == NULL || this->book->page.size() < 1){ return; }
+    if(book == NULL || book->page.size() < 1){ return; }
 
-    this->releaseKeyboard();
-    if(this->book->open){ lib->closeBook(this->book); }
+    releaseKeyboard();
+    if(book->open){ lib->closeBook(book); }
   
-    if(this->stats!= NULL){
-        this->stats->endPage(this->book->pagenum);
-        delete this->stats;
+    if(stats!= NULL){
+        stats->endPage(book->pagenum);
+        delete stats;
     }
 
     on_saveBookButton_clicked();
@@ -111,7 +115,7 @@ void OpenBKZ::on_saveBookButton_clicked(){
 
     if(book == NULL || book->page.size() < 1){ return; }
 
-    ui->saveBookButton->animateClick();
+    ui->saveBookButton->setText("Book Marked!");
 
     for(int i = 0; i < lib->books.size(); i++)
         if(book->title->compare(lib->books[i].title, Qt::CaseInsensitive) == 0)
@@ -128,18 +132,18 @@ void OpenBKZ::on_saveBookButton_clicked(){
  */
 void OpenBKZ::on_lineEdit_page_textEdited(const QString &arg1){
 
-    if(this->book == NULL){ return; }
-    this->stats->endPage((this->book->pagenum));
+    if(book == NULL){ return; }
+    this->stats->endPage((book->pagenum));
 
-    if(arg1.toInt() > this->book->page.count())
+    if(arg1.toInt() > book->page.count())
         QMessageBox::information(0, "Error", "Pages out of bounds");
 
-    if((this->search).compare(QString("Chapters"), Qt::CaseInsensitive) == 0){
-        if(arg1.toInt() > this->book->chapter.count() - 1){ return; }
-        this->book->pagenum = this->book->chapter[arg1.toInt()];
-    }else{
+    if((search).compare(QString("Pages"), Qt::CaseInsensitive) == 0){
         if(arg1.toInt() > this->book->page.count() - 1){ return; }
-        this->book->pagenum = arg1.toInt();
+        book->pagenum = arg1.toInt();
+    }else if((search).compare(QString("Chapters"), Qt::CaseInsensitive) == 0){
+        if(arg1.toInt() > this->book->chapter.count() - 1){ return; }
+        book->pagenum = this->book->chapter[arg1.toInt()];
     }
 
     this->stats->endPage(this->book->pagenum);
@@ -241,6 +245,7 @@ void OpenBKZ::loadpage(){
 
     if(this->book == NULL || this->book->page.size() < 1){ return; }
 
+    ui->saveBookButton->setText("Bookmark");
     QString str("");
     this->highlight.clear();
 
@@ -357,9 +362,17 @@ void OpenBKZ::on_pushNoteButton_clicked(){
  * @param arg1 - the item you are searching for
  */
 void OpenBKZ::on_search_type_currentIndexChanged(const QString &arg1){
-    this->search = QString(arg1);
-    if((this->search).compare(QString("Chapters"), Qt::CaseInsensitive) == 0)
+    if(this->book == NULL){ return; }
+    search = QString(arg1);
+    if((search).compare(QString("Chapters"), Qt::CaseInsensitive) == 0)
         QMessageBox::information(0, "Experimental", "This is experimental and may not work");
+    if((search).compare(QString("Term"), Qt::CaseInsensitive) == 0)
+        QMessageBox::information(0, "Experimental", "This is experimental, currently one finds next use of the term!");
+    try{
+     this->releaseKeyboard();
+    }catch(int e){
+        std::cout << "error" << std::endl;
+    }
 }
 
 /**
@@ -616,4 +629,39 @@ void OpenBKZ::indexingPage(){
  */
 void OpenBKZ::on_styleBox_activated(int index){
     loadpage();
+}
+
+/**
+ * @brief OpenBKZ::on_lineEdit_page_returnPressed - If search is set to "Term"
+ *                                                  it searches for the next term.
+ *
+ * WARNING will be updated for the future
+ *
+ */
+void OpenBKZ::on_lineEdit_page_returnPressed(){
+
+    QString searchTerm = ui->lineEdit_page->text();
+
+    if(this->search.compare("Term", Qt::CaseInsensitive) == 0){
+        std::cout << "searching term: " << searchTerm.toStdString() << std::endl;
+        ui->lineEdit_page->setText("Searching..");
+        book->termLoc = lib->searchTerm(searchTerm, book);  // TODO: CURRENTLY JUST STOPS AT FIRST FOUND TERM
+        ui->lineEdit_page->setText(searchTerm);
+    }else{
+        on_lineEdit_page_textEdited(searchTerm);
+        return;
+    }
+
+    // TODO: Should make this a combo box or easy selection (currently not)
+    for(int i = 0; i < book->termLoc.size(); i++){
+        QStringList list = book->termLoc[i].split(",", QString::SkipEmptyParts);
+        book->pagenum = list[0].toInt();
+        loadpage();
+        break;
+    }
+
+}
+
+void OpenBKZ::on_lineEdit_page_selectionChanged(){
+    this->releaseKeyboard();
 }

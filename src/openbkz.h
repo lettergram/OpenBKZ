@@ -5,6 +5,7 @@
 
 #include <QMainWindow>
 #include <QKeyEvent>
+#include <QList>
 
 namespace Ui {
 class OpenBKZ;
@@ -39,9 +40,11 @@ private slots:
 
     void on_fontSizeSlider_valueChanged(int value);
     void on_thumbPage_pressed();
-
-
     void on_styleBox_activated(int index);
+    void on_lineEdit_page_returnPressed();
+
+
+    void on_lineEdit_page_selectionChanged();
 
 private:
 
