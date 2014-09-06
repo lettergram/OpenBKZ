@@ -115,7 +115,7 @@ void OpenBKZ::on_saveBookButton_clicked(){
 
     if(book == NULL || book->page.size() < 1){ return; }
 
-    ui->saveBookButton->setText("Book Marked!");
+    ui->saveBookButton->setText("Bookmarked!");
 
     for(int i = 0; i < lib->books.size(); i++)
         if(book->title->compare(lib->books[i].title, Qt::CaseInsensitive) == 0)
@@ -643,7 +643,7 @@ void OpenBKZ::on_lineEdit_page_returnPressed(){
     QString searchTerm = ui->lineEdit_page->text();
 
     if(this->search.compare("Term", Qt::CaseInsensitive) == 0){
-        std::cout << "searching term: " << searchTerm.toStdString() << std::endl;
+      
         ui->lineEdit_page->setText("Searching..");
         book->termLoc = lib->searchTerm(searchTerm, book);  // TODO: CURRENTLY JUST STOPS AT FIRST FOUND TERM
         ui->lineEdit_page->setText(searchTerm);
