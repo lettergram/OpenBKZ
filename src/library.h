@@ -22,7 +22,7 @@ typedef struct _current_book{
 
     QList<int> page;        // list of positions that represent pages
     QList<int> chapter;     // List of page number the term chapter appears
-    QList<QString> termLoc; // List of <Page number, stream.pos()>, NOT SAVED - dynamic
+    // QList<QString> termLoc; // List of <Page number, stream.pos()>, NOT SAVED - dynamic
 
 } current_book;
 

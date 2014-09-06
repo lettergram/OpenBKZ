@@ -275,6 +275,7 @@ void OpenBKZ::loadpage(){
         if(locateWord && (wordPos[wordPosIndex] == i)){
             f.setUnderline(true);
             f.setBold(true);
+            wordPos[wordPosIndex] = 40;
             wordPosIndex++;
         }else{
             f.setUnderline(false);
@@ -299,6 +300,7 @@ void OpenBKZ::loadpage(){
 
     this->stats->startPage(this->book->pagenum);
     locateWord = false; // TODO REMOVE AT SOME POINT
+    wordPos.clear();
     file.close();
 }
 
@@ -658,23 +660,24 @@ void OpenBKZ::on_styleBox_activated(int index){
 void OpenBKZ::on_lineEdit_page_returnPressed(){
 
     QString searchTerm = ui->lineEdit_page->text();
+    QList<QString> termLoc;
 
     if(this->search.compare("Term", Qt::CaseInsensitive) == 0){
       
         ui->lineEdit_page->setText("Searching..");
-        book->termLoc = lib->searchTerm(searchTerm, book);  // TODO: CURRENTLY JUST STOPS AT FIRST FOUND TERM
+        termLoc = lib->searchTerm(searchTerm, book);  // TODO: CURRENTLY JUST STOPS AT FIRST FOUND TERM
         ui->lineEdit_page->setText(searchTerm);
     }else{
         on_lineEdit_page_textEdited(searchTerm);
         return;
     }
 
-    wordPos.resize(book->termLoc.size());
+    wordPos.resize(termLoc.size());
 
     // TODO: Should make this a combo box or easy selection (currently not)
-    for(int i = book->termLoc.size() - 1; i >= 0; i--){
+    for(int i = termLoc.size() - 1; i >= 0; i--){
 
-        QStringList list = book->termLoc[i].split(",", QString::SkipEmptyParts);
+        QStringList list = termLoc[i].split(",", QString::SkipEmptyParts);
         book->pagenum = list[0].toInt();    // page number
         // list[1].toInt();                 // location in file
         wordPos[i] = list[2].toInt();       // line number

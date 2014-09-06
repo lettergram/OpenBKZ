@@ -173,8 +173,15 @@ QList<QString> library::searchTerm(QString term, current_book * book){
     QList<QString> termLoc;
 
     bool found = false; // TODO: REMOVE
+    int page = 0;
 
-    for(int page = book->pagenum; !stream.atEnd(); page++){
+    /* Go to proper section */
+    for(page = 0; page < book->pagenum; page++)
+        for(int i = 0; i < LINESPERPAGE; i++)
+            stream.readLine(85);
+
+    /* Search book from current page */
+    for(page; !stream.atEnd(); page++){
         for(int i = 0; i < LINESPERPAGE; i++){
             QString check = stream.readLine(85);
             QStringList words = check.split(" ", QString::SkipEmptyParts);
