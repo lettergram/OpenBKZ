@@ -76,6 +76,10 @@ private:
     void saveHighlightedSection();
     void searchWord();
     void searchMenu(QString);
+
+/* Functions related to searching for words internal to book */
+    int wordPos;
+    bool locateWord;
 };
 
 #endif // OPENBKZ_H

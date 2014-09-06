@@ -49,6 +49,8 @@ OpenBKZ::OpenBKZ(QWidget *parent) :
         this->end = 0;
         this->search = QString("Pages");
         this->grabKeyboard();
+        this->wordPos = 0;
+        this->locateWord = false;
 }
 
 /**
@@ -266,14 +268,25 @@ void OpenBKZ::loadpage(){
     int imgline = 0;
 
     for(int i = 0; i < LINESPERPAGE; i++){
-        QString toadd(stream.readLine(85)); // TODO: Improve line and page parse
+
+        QString toadd = "";
+
+        if(locateWord && wordPos > stream.pos() && wordPos < stream.pos() + 85){
+            f.setUnderline(true);
+            f.setBold(true);
+        }else{
+            f.setUnderline(false);
+            f.setBold(false);
+        }
+        toadd.append(stream.readLine(85)); // TODO: Improve line and page parse
+
         imgline = this->parseImage(curline_pos, toadd, scene);
         if(imgline == 0){
             if(toadd.size() > 84)
                 scene->addText(toadd + '-', f)->setPos(0, curline_pos);
             else
                 scene->addText(toadd, f)->setPos(0, curline_pos);
-        }
+            }
         curline_pos += (imgline | this->fontsize) + 3; // Not exactly inline but close enough
     }
 
@@ -656,6 +669,8 @@ void OpenBKZ::on_lineEdit_page_returnPressed(){
     for(int i = 0; i < book->termLoc.size(); i++){
         QStringList list = book->termLoc[i].split(",", QString::SkipEmptyParts);
         book->pagenum = list[0].toInt();
+        wordPos = list[1].toInt();
+        locateWord = true;
         loadpage();
         break;
     }
