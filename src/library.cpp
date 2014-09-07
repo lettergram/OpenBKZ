@@ -184,7 +184,8 @@ QList<QString> library::searchTerm(QString term, current_book * book){
     for(page; !stream.atEnd(); page++){
         for(int i = 0; i < LINESPERPAGE; i++){
             QString check = stream.readLine(85);
-            QStringList words = check.split(" ", QString::SkipEmptyParts);
+            QRegExp delimiters("(\\)|\\(|\\ |\\,|\\.|\\:|\\t)");
+            QStringList words = check.split(delimiters, QString::SkipEmptyParts);
             for(int j = 0; j < words.count(); j++){
                 if(words[j].compare(term, Qt::CaseInsensitive) == 0){
                     termLoc << QString::number(page) + "," + QString::number(stream.pos()) + "," + QString::number(i);
