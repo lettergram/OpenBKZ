@@ -246,7 +246,7 @@ int OpenBKZ::parseImage(int y, QString line, QGraphicsScene * scene){
  * TODO: Spacing is slightly off
  *
  */
-void AlphaBKZ::loadpage(){
+void OpenBKZ::loadpage(){
   
   if(this->book == NULL || this->book->page.size() < 1){ return; }
   
