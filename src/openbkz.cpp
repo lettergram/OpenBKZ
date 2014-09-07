@@ -237,105 +237,111 @@ int OpenBKZ::parseImage(int y, QString line, QGraphicsScene * scene){
 
 
 /**
- * Private Function of the OpenBKZ class
+ * Private Function of the AlphaBKZ class
  *
  * @brief OpenBKZ::next_page - loads the next page (30 lines) from the current book
  * into the window.
  *
  * TODO: Need refactoring!!!
+ * TODO: Spacing is slightly off
  *
  */
-void OpenBKZ::loadpage(){
-
-    if(this->book == NULL || this->book->page.size() < 1){ return; }
-
-    ui->saveBookButton->setText("Bookmark");
-    QString str("");
-    this->highlight.clear();
-
-    QFile file(*book->file_location + *book->title);
-    if(!file.open(QIODevice::ReadOnly))
-        QMessageBox::information(0, "Error", file.errorString());
-    QTextStream stream(&file);
-
-    if(!stream.seek(this->book->page[this->book->pagenum])){
-        stream.seek(0);
-        this->book->pagenum = 0;
-    }
-
-    QGraphicsScene * scene = new QGraphicsScene();
-    QFont f(ui->styleBox->currentText(), fontsize);
-    QFont bf(ui->styleBox->currentText(), fontsize);
-    //f.setPointSize(this->fontsize);
-    int curline_pos = 0;
-    int imgline = 0;
-    int wordPosIndex = 0;
-
-    for(int i = 0; i < LINESPERPAGE; i++){
-
-        QString line = "";
-        QString preTerm = "";
-        QString boldTerm = "";
-        QString postTerm = "";
-
-        line.append(stream.readLine(85)); // TODO: Improve line and page parse
-
-        // Currently accurate to line
-        if(locateWord && (wordPos[wordPosIndex] == i)){
-
-            bf.setUnderline(true);
-            bf.setBold(true);
-
-            QRegExp delimiters("(\\)|\\(|\\ |\\,|\\.|\\:|\\t)");
-            QStringList list = line.split(delimiters, QString::KeepEmptyParts);
-            bool termFound = false;
-
-            preTerm.append("-> ");
-
-            for(int index = 0; index < list.size(); index++){
-                std::cout << "Searching: " << ui->lineEdit_page->text().toStdString();
-                std::cout << " compare: " << list[index].toStdString() << std::endl;
-                if(ui->lineEdit_page->text().compare(list[index], Qt::CaseInsensitive) == 0){
-
-                    boldTerm.append(" " + list[index] + " ");
-                    postTerm.append(" ");
-                    termFound = true;
-                }else if(!termFound){
-                    preTerm.append(list[index] + " ");
-                }else{
-                    postTerm.append(list[index] + " ");
-                }
-            }
-
-            wordPos[wordPosIndex] = 40;
-            wordPosIndex++;
+void AlphaBKZ::loadpage(){
+  
+  if(this->book == NULL || this->book->page.size() < 1){ return; }
+  
+  ui->saveBookButton->setText("Bookmark");
+  QString str("");
+  this->highlight.clear();
+  
+  QFile file(*book->file_location + *book->title);
+  if(!file.open(QIODevice::ReadOnly))
+    QMessageBox::information(0, "Error", file.errorString());
+  
+  
+  QGraphicsScene * scene = new QGraphicsScene();
+  
+  QTextStream stream(&file);
+  if(!stream.seek(this->book->page[this->book->pagenum])){
+    stream.seek(0);
+    this->book->pagenum = 0;
+  }
+  
+  QFont f(ui->styleBox->currentText(), fontsize);
+  QFont bf(ui->styleBox->currentText(), fontsize);
+  
+  int curline_pos = 0;
+  int imgline = 0;
+  int wordPosIndex = 0;
+  
+  for(int i = 0; i < LINESPERPAGE; i++){
+    
+    QString line = "";
+    QString preTerm = "";
+    QString boldTerm = "";
+    QString postTerm = "";
+    
+    line.append(stream.readLine(85)); // TODO: Improve line and page parse
+    
+    // Currently accurate to line
+    if(locateWord && (wordPos[wordPosIndex] == i)){
+      
+      bf.setUnderline(true);
+      bf.setBold(true);
+      
+      QRegExp delimiters("(\\)|\\(|\\ |\\,|\\.|\\:|\\t)");
+      QStringList list = line.split(delimiters, QString::KeepEmptyParts);
+      bool termFound = false;
+      
+      preTerm.append("-> ");
+      
+      for(int index = 0; index < list.size(); index++){
+        
+        QString toadd = list[index][0] + list[index].mid(1).toLower() + " ";
+        
+        if(ui->lineEdit_page->text().compare(list[index], Qt::CaseInsensitive) == 0){
+          boldTerm.append(toadd);
+          termFound = true;
+        }else if(!termFound){
+          preTerm.append(toadd);
         }else{
-            f.setUnderline(false);
-            f.setBold(false);
-            preTerm.append(line);
+          postTerm.append(toadd);
         }
-
-        imgline = this->parseImage(curline_pos, preTerm, scene);
-        if(imgline == 0){
-            if((preTerm.size() + boldTerm.size() + postTerm.size()) > 84)
-                scene->addText(postTerm + '-', f)->setPos(0, curline_pos);
-            else
-                scene->addText(preTerm, f)->setPos(0, curline_pos);
-                scene->addText(boldTerm, bf)->setPos(preTerm.size() * f.pointSize() / 2, curline_pos);
-                scene->addText(postTerm, f)->setPos((preTerm.size() * f.pointSize() / 2) + (boldTerm.size()* bf.pointSize() / 2), curline_pos);
-            }
-        curline_pos += (imgline | this->fontsize) + 3; // Not exactly inline but close enough
+      }
+      
+      wordPos[wordPosIndex] = 40;
+      wordPosIndex++;
+    }else{
+      f.setUnderline(false);
+      f.setBold(false);
+      preTerm.append(line);
     }
-
-    scene->addText(QString(QString("Page: ") + QString::number(this->book->pagenum)+ " / "
-    + QString::number(this->book->page.count() - 1)).rightJustified(135, ' '))->setPos(0, curline_pos);
-    ui->graphicsView->setScene(scene);
-
-    this->stats->startPage(this->book->pagenum);
-    locateWord = false; // TODO REMOVE AT SOME POINT
-    wordPos.clear();
-    file.close();
+    
+    imgline = this->parseImage(curline_pos, preTerm, scene);
+    if(imgline == 0){
+      if((preTerm.size() + boldTerm.size() + postTerm.size()) > 84){
+        scene->addText(postTerm + '-', f)->setPos(0, curline_pos);
+      }else{
+        scene->addText(preTerm, f)->setPos(0, curline_pos);
+        int preAdj = (preTerm.size() * f.pointSize() / 2) + (2*preTerm.size() / (1+boldTerm.size()));
+        scene->addText(boldTerm, bf)->setPos(preAdj, curline_pos);
+        int boldAdj = (boldTerm.size()* bf.pointSize() / 2) + boldTerm.size();
+        scene->addText(postTerm, f)->setPos(preAdj + boldAdj, curline_pos);
+      }
+    }
+    curline_pos += (imgline | this->fontsize) + 3; // Not exactly inline but close enough
+  }
+  
+  scene->addText(QString(QString("Page: ") + QString::number(this->book->pagenum)+ " / "
+                         + QString::number(this->book->page.count() - 1)).rightJustified(135, ' '))->setPos(0, curline_pos);
+  ui->graphicsView->setScene(scene);
+  
+  this->stats->startPage(this->book->pagenum);
+  locateWord = false; // TODO REMOVE AT SOME POINT
+  wordPos.clear();
+  file.close();
 }
+
 
 /**
  * Private Function of OpenBKZ class

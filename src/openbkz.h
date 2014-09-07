@@ -21,6 +21,10 @@ public:
     explicit OpenBKZ(QWidget *parent = 0);
     ~OpenBKZ();
 
+    int textToScreen(QTextStream stream, QGraphicsScene* scene);
+    void printLineToPage(QFont f, QString preTerm, int wordPosIndex, QString postTerm, QString boldTerm, int i, QString line, QFont bf);
+    int textToPage(QGraphicsScene* scene, QFile file);
+    void generateTextLine(int wordPosIndex, QString postTerm, QString boldTerm, QString preTerm, QFont bf, QFont f, int i, QString line);
 private slots:
 
     void on_nextButton_clicked();
