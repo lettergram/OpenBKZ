@@ -94,3 +94,5 @@ Further, I intend to launch a similar closed source project called AlphaBKZ whic
       <li>**Publishing**, enabling a person to self publish and sell their books through this application would be a great 
             improvement.</li>
     <ul>
+
+Copyright Austin Walters 2014 - 2015, All-Rights Reserved
