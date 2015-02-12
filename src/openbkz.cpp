@@ -59,8 +59,26 @@ OpenBKZ::OpenBKZ(QWidget *parent) :
         QPixmap logo;
         logo.load(dir.absolutePath() + "/OpenBKZ-alpha.png");
         QGraphicsPixmapItem * item = new QGraphicsPixmapItem(logo);
+
+        QPixmap blackArrow;
+        blackArrow.load(dir.absolutePath() + "/black-arrows.png");
+        QIcon blackArrowIcon;
+        blackArrowIcon.addPixmap(blackArrow);
+        ui->user_rating->setItemIcon(0, blackArrowIcon);
+        ui->styleBox->setItemIcon(0, blackArrowIcon);
+
+        /* TODO: Sperate into seperate function */
+        QAction * actionStatus = new QAction("Enabled", ui->menuStatistics);
+        actionStatus->setCheckable(true);
+        actionStatus->setChecked(true);
+        connect(actionStatus, SIGNAL(triggered()), this, SLOT(statsGathering()));
+        QList<QAction *> list;
+        list.append(actionStatus);
+        ui->menuStatistics->addActions(list);
+
         item->setScale(0.5);
         scene->addItem(item);
+
         ui->graphicsView->setScene(scene);
 }
 
@@ -344,7 +362,6 @@ void OpenBKZ::loadpage(){
     curline_pos += (imgline | this->fontsize) + 3; // Not exactly inline but close enough
   }
 
-  //scene->addText(QString("").rightJustified(135, ' '))->setPos(0, curline_pos); // Hacky solution
   ui->graphicsView->setScene(scene);
 
   QString curPage, maxPage;
@@ -641,7 +658,8 @@ void OpenBKZ::on_fontSizeSlider_valueChanged(int value){
  */
 void OpenBKZ::on_thumbPage_pressed(){
 
-    if(this->book == NULL){ return; }
+    if(this->book->title == NULL){ return; }
+    if(this->lib == NULL){ return; }
 
     for(int i = 0; i < lib->books.size(); i++){
         if(0 == lib->books[i].title->compare(*(book->title), Qt::CaseInsensitive)){

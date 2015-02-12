@@ -38,144 +38,126 @@
    <double>1.000000000000000</double>
   </property>
   <property name="styleSheet">
-   <string notr="true">#centralWidget {
-        background:qradialgradient(spread:pad, cx:0.323, cy:0.380682, radius:0.972934, fx:0.067, fy:0.051, stop:0 rgba(253, 118, 39, 255), stop:1 rgba(124, 55, 21, 255))
-}
-        
-#label_2{
-	color:rgb(255, 255, 255)
-}
-        
-#pageLabel{
-	color:rgb(255, 255, 255)
-}
-        
-#graphicsViews{
-	background:rgb(245, 245, 245)
-}
-        
-#lineEdit_page{
-	background:rgb(245, 245, 245)
+   <string notr="true">#centralWidget{
+	color:qlineargradient(spread:pad, x1:1, y1:1, x2:0, y2:0, stop:0 rgba(195, 195, 195, 255), stop:1 rgba(255, 255, 255, 255));
 }
         
 #nextButton{
-    background-color: rgba(181, 70, 23, 200);
+    background-color: rgb(237, 237, 237);
     border-style: outset;
     border-width: 2px;
     border-radius: 10px;
-    border-color: beige;
+    border-color: rgb(100, 100, 100);
     font: bold 14px;
     min-width: 4em;
     padding: 1px;
-    color: rgb(255, 255, 255);
 }
         
 #nextButton:pressed {
-    background-color: rgb(255,255,255);
-    color: rgb(255, 131, 55);
+   	background-color: rgb(0, 0, 0);
+   	color: rgb(237, 237, 237);
     border-style: inset;
 }
         
 #prevButton{
-    background-color: rgba(181, 70, 23, 200);
+    background-color: rgb(237, 237, 237);
     border-style: outset;
     border-width: 2px;
     border-radius: 10px;
-    border-color: beige;
+    border-color: rgb(100, 100, 100);
     font: bold 14px;
     min-width: 4em;
     padding: 1px;
-    color: rgb(255, 255, 255);
 }
         
 #prevButton:pressed {
-   background-color: rgb(255,255,255);
-   color: rgb(255, 131, 55);
+   background-color: rgb(0, 0, 0);
+   color: rgb(237, 237, 237);
    border-style: inset;
 }
         
 #toolButton {
-   background-color: rgba(181, 70, 23, 200);
-   border-style: outset;
-   border-width: 2px;
-   border-radius: 10px;
-   border-color: beige;
-   font: bold 14px;
-   min-width: 4em;
-   padding: 1px;
-   color: rgb(255, 255, 255);
+    background-color: rgb(237, 237, 237);
+    border-style: outset;
+    border-width: 2px;
+    border-radius: 10px;
+    border-color: rgb(100, 100, 100);
+    font: bold 14px;
+    min-width: 4em;
+    padding: 1px;
 }
         
 #toolButton:pressed {
-   background-color: rgb(255,255,255);
-   color: rgb(255, 131, 55);
+   background-color: rgb(0, 0, 0);
+   color: rgb(237, 237, 237);
    border-style: inset;
 }
         
 #saveBookButton {
-   background-color: rgba(181, 70, 23, 200);
-   border-style: outset;
-   border-width: 2px;
-   border-radius: 10px;
-   border-color: beige;
-   font: bold 14px;
-   color: rgb(255, 255, 255);
+    background-color: rgb(237, 237, 237);
+    border-style: outset;
+    border-width: 2px;
+    border-radius: 10px;
+    border-color: rgb(100, 100, 100);
+    font: bold 14px;
+    min-width: 4em;
+    padding: 1px;
 }
         
 #saveBookButton:pressed {
-   background-color: rgb(255,255,255);
-   color: rgb(255, 131, 55);
+   background-color: rgb(0, 0, 0);
+   color: rgb(237, 237, 237);
    border-style: inset;
 }
         
 #pushNoteButton {
-   background-color: rgba(181, 70, 23, 200);
-   border-style: outset;
-   border-width: 2px;
-   border-radius: 10px;
-   border-color: beige;
-   font: bold 14px;
-   min-width: 4em;
-   color: rgb(255, 255, 255);
+    background-color: rgb(237, 237, 237);
+    border-style: outset;
+    border-width: 2px;
+    border-radius: 10px;
+    border-color: rgb(100, 100, 100);
+    font: bold 14px;
+    min-width: 4em;
+    padding: 1px;
 }
         
 #pushNoteButton:pressed {
-	background-color: rgb(255,255,255);
-    color: rgb(255, 131, 55);
+   	background-color: rgb(0, 0, 0);
+   	color: rgb(237, 237, 237);
     border-style: inset;
 }
         
 #thumbPage {
-   background-color: rgba(181, 70, 23, 200);
-   border-style: outset;
-   border-width: 2px;
-   border-radius: 10px;
-   border-color: beige;
-   font: bold 14px;
-   min-width: 4em;
-   color: rgb(255, 255, 255);
+    background-color: rgb(237, 237, 237);
+    border-style: outset;
+    border-width: 2px;
+    border-radius: 10px;
+    border-color: rgb(100, 100, 100);
+    font: bold 14px;
+    min-width: 4em;
+    padding: 1px;
 }
         
 #thumbPage:pressed {
-   background-color: rgb(255,255,255);
-   color: rgb(255, 131, 55);
+   background-color: rgb(0, 0, 0);
+   color: rgb(237, 237, 237);
    border-style: inset;
 }
         
 #viewStats {
-   background-color: rgba(181, 70, 23, 200);
-   border-style: outset;
-   border-width: 2px;
-   border-radius: 10px;
-   border-color: beige;
-   font: bold 14px;
-   min-width: 4em;
-   color: rgb(255, 255, 255);
+    background-color: rgb(237, 237, 237);
+    border-style: outset;
+    border-width: 2px;
+    border-radius: 10px;
+    border-color: rgb(100, 100, 100);
+    font: bold 14px;
+    min-width: 4em;
+    padding: 1px;
 }
         
 #viewStats:pressed {
-	background-color: rgb(255,255,255);
-    color: rgb(255, 131, 55);
+   	background-color: rgb(0, 0, 0);
+   	color: rgb(237, 237, 237);
     border-style: inset;
 }
         
@@ -183,20 +165,19 @@ QComboBox{
     border-style: outset;
     border-width: 2px;
     border-radius: 10px;
-    border-color: beige;
+    border-color: rgb(100, 100, 100);
     font: bold 14px;
     min-width: 1em;
-    background-color: rgba(181, 70, 23, 200);
-    color: rgb(255, 255, 255);
-    selection-background-color:rgba(255, 255, 255, 255);
-	selection-color: rgb(255, 131, 55);
+    background-color: rgb(237, 237, 237);
+    selection-background-color:rgb(0, 0, 0);
+	selection-color: rgb(237, 237, 237);
 }
 
 QComboBox QAbstractItemView{
     border-width: 0px;
-    background-color: rgba(181, 70, 23, 200);
-    color: rgb(255, 131, 55);
-    selection-background-color:rgba(239, 111, 36, 255);
+    background-color: rgb(237, 237, 237);
+    selection-background-color:rgb(0, 0, 0);
+	selection-color:rgb(237, 237, 237);
 }
 QComboBox::drop-down {
    border-width: 0px;
