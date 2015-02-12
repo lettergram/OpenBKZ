@@ -164,15 +164,18 @@ void OpenBKZ::on_saveBookButton_clicked(){
 void OpenBKZ::on_lineEdit_page_textEdited(const QString &arg1){
 
     if(book == NULL){ return; }
+    if(stats == NULL){ return; }
+    if(arg1.size() < 2){ return; }
+
     this->stats->endPage((book->pagenum));
 
     if(arg1.toInt() > book->page.count())
         QMessageBox::information(0, "Error", "Pages out of bounds");
 
-    if((search).compare(QString("Pages"), Qt::CaseInsensitive) == 0){
+    if(ui->search_type->currentText().compare(QString("Pages"), Qt::CaseInsensitive) == 0){
         if(arg1.toInt() > this->book->page.count() - 1){ return; }
         book->pagenum = arg1.toInt();
-    }else if((search).compare(QString("Chapters"), Qt::CaseInsensitive) == 0){
+    }else if(ui->search_type->currentText().compare(QString("Chapters"), Qt::CaseInsensitive) == 0){
         if(arg1.toInt() > this->book->chapter.count() - 1){ return; }
         book->pagenum = this->book->chapter[arg1.toInt()];
     }

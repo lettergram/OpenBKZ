@@ -456,7 +456,7 @@ QComboBox::down-arrow {
       </property>
      </widget>
     </item>
-    <item row="31" column="4">
+    <item row="31" column="4" alignment="Qt::AlignVCenter">
      <widget class="QComboBox" name="search_type">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
