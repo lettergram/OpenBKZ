@@ -165,7 +165,7 @@ void OpenBKZ::on_lineEdit_page_textEdited(const QString &arg1){
 
     if(book == NULL){ return; }
     if(stats == NULL){ return; }
-    if(arg1.size() < 2){ return; }
+    if(arg1.size() < 1){ return; }
 
     this->stats->endPage((book->pagenum));
 

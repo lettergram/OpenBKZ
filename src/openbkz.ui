@@ -32,7 +32,7 @@
    <enum>Qt::NoContextMenu</enum>
   </property>
   <property name="windowTitle">
-   <string>OpenBKZ - EBook Reader</string>
+   <string>OpenBKZ - EBook Reader - alpha v0.5.0</string>
   </property>
   <property name="windowOpacity">
    <double>1.000000000000000</double>
