@@ -1,3 +1,5 @@
+Officially hosted from the [Synaptitude github repository](https://github.com/Synaptitude/OpenBKZ)!
+
 OpenBKZ
 ============
 
