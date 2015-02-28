@@ -2,6 +2,9 @@
 <ui version="4.0">
  <class>statsviewer</class>
  <widget class="QWidget" name="statsviewer">
+  <property name="windowModality">
+   <enum>Qt::ApplicationModal</enum>
+  </property>
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -19,12 +22,21 @@
   <property name="windowTitle">
    <string>OpenBKZ Statistics</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="3" column="8">
     <widget class="QComboBox" name="titleBox">
+     <property name="minimumSize">
+      <size>
+       <width>120</width>
+       <height>0</height>
+      </size>
+     </property>
      <property name="maximumSize">
       <size>
-       <width>95</width>
+       <width>120</width>
        <height>16777215</height>
       </size>
      </property>
@@ -37,11 +49,25 @@
    </item>
    <item row="4" column="8">
     <widget class="QComboBox" name="statsTypeBox">
+     <property name="minimumSize">
+      <size>
+       <width>120</width>
+       <height>0</height>
+      </size>
+     </property>
      <property name="maximumSize">
       <size>
-       <width>95</width>
+       <width>120</width>
        <height>16777215</height>
       </size>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>13</pointsize>
+       <weight>50</weight>
+       <italic>false</italic>
+       <bold>false</bold>
+      </font>
      </property>
      <item>
       <property name="text">
@@ -67,9 +93,15 @@
    </item>
    <item row="5" column="8">
     <widget class="QPushButton" name="timesToggle">
+     <property name="minimumSize">
+      <size>
+       <width>120</width>
+       <height>0</height>
+      </size>
+     </property>
      <property name="maximumSize">
       <size>
-       <width>95</width>
+       <width>120</width>
        <height>16777215</height>
       </size>
      </property>
@@ -102,6 +134,13 @@
        <height>16</height>
       </size>
      </property>
+     <property name="font">
+      <font>
+       <pointsize>13</pointsize>
+       <weight>50</weight>
+       <bold>false</bold>
+      </font>
+     </property>
      <property name="text">
       <string>Title | Start Date to End Date</string>
      </property>
@@ -114,6 +153,13 @@
        <width>250</width>
        <height>17</height>
       </size>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>13</pointsize>
+       <weight>50</weight>
+       <bold>false</bold>
+      </font>
      </property>
      <property name="text">
       <string>OpenBKZ Statisics Alpha v0.4</string>
@@ -136,6 +182,13 @@
        <width>180</width>
        <height>16777215</height>
       </size>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>13</pointsize>
+       <weight>50</weight>
+       <bold>false</bold>
+      </font>
      </property>
      <property name="text">
       <string>Avg time per page: </string>
